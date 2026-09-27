@@ -20,8 +20,10 @@
   inset: 0;
   content: "";
   background:
-    radial-gradient(ellipse at 70% 72%, #cfe4db80, transparent 52%),
-    radial-gradient(ellipse at 100% 15%, #e6e3ef80, transparent 48%);
+    radial-gradient(ellipse at 0% 0%, #b8d9f580, transparent 46%),
+    radial-gradient(ellipse at 100% 0%, #d0bef380, transparent 46%),
+    radial-gradient(ellipse at 0% 100%, #f5c9b680, transparent 46%),
+    radial-gradient(ellipse at 100% 100%, #c8e5d680, transparent 46%);
 }
 
 .login-page .login-header,
