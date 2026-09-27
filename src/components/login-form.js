@@ -1,9 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowRight, Eye, EyeOff, LockKeyhole } from "lucide-react";
+import {
+  ArrowRight,
+  CircleCheck,
+  Eye,
+  EyeOff,
+  Headphones,
+  Loader2,
+  LockKeyhole,
+  Mail,
+  Sparkles,
+} from "lucide-react";
 import { api } from "../lib/api";
-import { Brand, Button, Notice } from "./ui";
+import { Notice } from "./ui";
+import "./login.css";
 
 export default function LoginForm() {
   const [visible, setVisible] = useState(false);
@@ -38,132 +49,125 @@ export default function LoginForm() {
   }
 
   return (
-    <main className="min-h-dvh bg-white lg:grid lg:grid-cols-[0.95fr_1.05fr]">
-      <section className="relative hidden min-h-dvh flex-col justify-between bg-[#191d27] px-12 py-10 lg:flex xl:px-20">
-        <Brand dark />
-        <div className="max-w-md py-20">
-          <p className="mb-7 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400">
-            Pusat bantuan internal
-          </p>
-          <h1 className="text-[3.5rem] font-medium leading-[1.12] tracking-[-0.045em] text-white">
-            Kembali fokus.
-            <br />
-            <span className="text-zinc-400">
-              Kami bantu
-              <br />
-              kendala IT Anda.
-            </span>
-          </h1>
-          <p className="mt-7 max-w-sm text-base leading-relaxed text-zinc-400">
-            Satu tempat untuk melaporkan masalah, mengikuti progres, dan
-            berkomunikasi dengan tim IT.
-          </p>
-          <div className="mt-12 border-t border-white/15">
-            {[
-              ["01", "Laporkan kendala", "Ceritakan masalah yang Anda alami."],
-              ["02", "Pantau penanganan", "Ikuti perkembangan tiket Anda."],
-              [
-                "03",
-                "Temukan solusi",
-                "Diskusikan langsung dengan IT Support.",
-              ],
-            ].map(([number, title, text]) => (
-              <div
-                key={number}
-                className="flex gap-5 border-b border-white/10 py-5"
-              >
-                <span className="pt-0.5 font-mono text-xs text-zinc-500">
-                  {number}
-                </span>
-                <div>
-                  <p className="text-sm font-medium text-zinc-200">{title}</p>
-                  <p className="mt-1 text-sm text-zinc-400">{text}</p>
-                </div>
-              </div>
-            ))}
+    <main className="login-page">
+      <div className="login-shell">
+        <header className="login-header">
+          <div className="login-brand">
+            <span className="login-brand-icon"><Headphones size={22} strokeWidth={1.7} /></span>
+            <span>Helpdesk <span className="login-brand-suffix">IT</span></span>
           </div>
-        </div>
-        <p className="text-xs text-zinc-500">
-          HELPDESK IT <span className="mx-2">/</span> INTERNAL WORKSPACE
-        </p>
-      </section>
-      <section className="flex min-h-dvh flex-col px-6 py-8 sm:px-12 lg:px-16">
-        <div className="lg:hidden">
-          <Brand />
-        </div>
-        <div className="hidden text-right text-sm text-zinc-400 lg:block">
-          Portal layanan IT
-        </div>
-        <div className="mx-auto flex w-full max-w-[380px] flex-1 flex-col justify-center py-16">
-          <p className="eyebrow">Selamat datang kembali</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight">
-            Masuk ke workspace
-          </h2>
-          <p className="mt-3 text-sm leading-relaxed text-zinc-500">
-            Gunakan akun Anda untuk mengakses layanan bantuan IT.
-          </p>
-          <form onSubmit={login} className="mt-9 space-y-5">
-            <Notice>{error}</Notice>
-            <div>
-              <label htmlFor="email" className="label">
-                Alamat email
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="username"
-                placeholder="nama@perusahaan.com"
-                className="field"
-                required
-                disabled={busy}
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="label">
-                Kata sandi
-              </label>
-              <div className="relative">
-                <input
-                  id="password"
-                  name="password"
-                  type={visible ? "text" : "password"}
-                  autoComplete="current-password"
-                  placeholder="Masukkan kata sandi"
-                  className="field pr-12"
-                  required
-                  disabled={busy}
-                />
-                <button
-                  type="button"
-                  onClick={() => setVisible(!visible)}
-                  aria-label={
-                    visible ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"
-                  }
-                  aria-pressed={visible}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-2 text-zinc-400 hover:text-ink"
-                >
-                  {visible ? <EyeOff size={18} /> : <Eye size={18} />}
-                </button>
-              </div>
-            </div>
-            <Button type="submit" busy={busy} className="!mt-7 w-full">
-              {busy ? "Memproses..." : "Masuk"}
-              {!busy && <ArrowRight size={16} className="ml-auto" />}
-            </Button>
-          </form>
-          <div className="mt-8 flex items-start gap-2.5 border-t border-zinc-100 pt-6 text-sm leading-relaxed text-zinc-500">
-            <LockKeyhole size={16} className="mt-0.5 shrink-0" />
-            <p>
-              Akses khusus pengguna internal. Hubungi administrator jika Anda
-              belum memiliki akun.
+          <span className="login-header-label"><span /> Portal layanan internal</span>
+        </header>
+
+        <div className="login-content">
+          <section className="login-intro" aria-labelledby="login-heading">
+            <div className="login-eyebrow"><Sparkles size={14} /> YOUR EVERYDAY IT SUPPORT</div>
+            <h1 id="login-heading">Kendala IT?<br /><span>Kami bantu.</span></h1>
+            <p className="login-description">
+              Lebih sedikit kendala, lebih banyak hal bermakna.
+              Laporkan masalah dan terhubung dengan tim IT,
+              dalam satu workspace.
             </p>
-          </div>
+
+            <div className="login-art" aria-hidden="true">
+              <div className="login-art-glow" />
+              <div className="login-orbit login-orbit-back" />
+              <div className="login-sphere">
+                <div className="login-sphere-core"><Headphones size={66} strokeWidth={1.15} /></div>
+              </div>
+              <div className="login-orbit login-orbit-front" />
+              <div className="login-art-spark login-art-spark-one"><Sparkles size={24} strokeWidth={1.4} /></div>
+              <div className="login-art-spark login-art-spark-two" />
+              <div className="login-floating-note login-note-ticket">
+                <span className="login-note-icon"><CircleCheck size={19} /></span>
+                <div><strong>Solusi lebih dekat</strong><span>Bersama tim IT Anda</span></div>
+              </div>
+              <div className="login-floating-note login-note-support">
+                <span className="login-note-icon"><Headphones size={17} /></span>
+                <strong>Let’s make IT easy.</strong>
+              </div>
+            </div>
+
+            <div className="login-steps" aria-label="Layanan helpdesk">
+              <span><span>01</span> Laporkan</span>
+              <span className="login-step-line" aria-hidden="true" />
+              <span><span>02</span> Pantau</span>
+              <span className="login-step-line" aria-hidden="true" />
+              <span><span>03</span> Selesaikan</span>
+            </div>
+          </section>
+
+          <section className="login-form-area" aria-labelledby="login-form-heading">
+            <div className="login-card">
+              <div className="login-card-icon"><LockKeyhole size={23} strokeWidth={1.5} /></div>
+              <p className="login-card-eyebrow">SELAMAT DATANG KEMBALI</p>
+              <h2 id="login-form-heading">Masuk ke workspace</h2>
+              <p className="login-card-description">Satu langkah untuk hari kerja yang lebih lancar.</p>
+
+              <form onSubmit={login} className="login-form" aria-busy={busy}>
+                <Notice>{error}</Notice>
+                <div className="login-field-group">
+                  <label htmlFor="email">Alamat email</label>
+                  <div className="login-input-wrap">
+                    <Mail size={18} aria-hidden="true" />
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      autoComplete="username"
+                      placeholder="nama@perusahaan.com"
+                      required
+                      disabled={busy}
+                    />
+                  </div>
+                </div>
+                <div className="login-field-group">
+                  <label htmlFor="password">Kata sandi</label>
+                  <div className="login-input-wrap">
+                    <LockKeyhole size={18} aria-hidden="true" />
+                    <input
+                      id="password"
+                      name="password"
+                      type={visible ? "text" : "password"}
+                      autoComplete="current-password"
+                      placeholder="Masukkan kata sandi"
+                      required
+                      disabled={busy}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setVisible(!visible)}
+                      aria-label={visible ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"}
+                      aria-pressed={visible}
+                      className="login-password-toggle"
+                    >
+                      {visible ? <EyeOff size={18} /> : <Eye size={18} />}
+                    </button>
+                  </div>
+                </div>
+                <button type="submit" disabled={busy} className="login-submit">
+                  <span>{busy ? "Memproses..." : "Masuk ke workspace"}</span>
+                  <span className="login-submit-icon">
+                    {busy ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
+                  </span>
+                </button>
+              </form>
+
+              <div className="login-account-note">
+                <span>Belum memiliki akun?</span>
+                <p>Hubungi administrator untuk mendapatkan akses.</p>
+              </div>
+              <div className="login-security-note"><LockKeyhole size={13} /> Akses khusus pengguna internal</div>
+            </div>
+            <p className="login-form-caption">Ruang kerja Anda. Dukungan dari kami.</p>
+          </section>
         </div>
-        <p className="text-center text-xs text-zinc-400">
-          Helpdesk IT · Layanan bantuan teknologi informasi
-        </p>
-      </section>
+
+        <footer className="login-footer">
+          <span>Helpdesk IT · Layanan bantuan teknologi informasi</span>
+          <span className="login-footer-tag">A little support. A better workday.<Sparkles size={13} /></span>
+        </footer>
+      </div>
     </main>
   );
 }
