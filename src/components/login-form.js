@@ -1,13 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  ArrowRight,
-  Eye,
-  EyeOff,
-  Headphones,
-  Loader2,
-} from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { api } from "../lib/api";
 import { Notice } from "./ui";
 import "./login.css";
@@ -46,86 +40,84 @@ export default function LoginForm() {
 
   return (
     <main className="login-page">
-      <div className="login-shell">
-        <header className="login-header">
-          <div className="login-brand">
-            <span className="login-brand-icon"><Headphones size={22} strokeWidth={1.7} /></span>
-            <span>Helpdesk <span className="login-brand-suffix">IT</span></span>
-          </div>
-          <span className="login-header-label">Portal internal</span>
-        </header>
+      {/* Cahaya gradien transparan di bawah kertas bergaris */}
+      <div className="login-glow" aria-hidden="true">
+        <span className="login-glow-a" />
+        <span className="login-glow-b" />
+        <span className="login-glow-c" />
+        <span className="login-glow-d" />
+      </div>
 
-        <div className="login-content">
-          <section className="login-intro" aria-labelledby="login-heading">
-            <h1 id="login-heading">Kendala IT?<br /><span>Kami bantu.</span></h1>
-            <p className="login-description">
-              Laporkan kendala, pantau progres, dan terhubung
-              dengan tim IT. Semua dalam satu tempat.
-            </p>
-          </section>
+      <header className="login-top">
+        <span className="login-brand">
+          <span className="login-brand-mark" aria-hidden="true" />
+          Helpdesk IT
+        </span>
+      </header>
 
-          <section className="login-form-area" aria-labelledby="login-form-heading">
-            <div className="login-card">
-              <h2 id="login-form-heading">Selamat datang.</h2>
-              <p className="login-card-description">Masuk untuk mengakses layanan IT.</p>
+      <div className="login-stage">
+        <section className="login-intro" aria-labelledby="login-heading">
+          <h1 id="login-heading">Kendala IT?<br />Kami bantu.</h1>
+          <p>
+            Laporkan kendala, pantau progres, dan hubungi tim IT
+            dari satu tempat.
+          </p>
+        </section>
 
-              <form onSubmit={login} className="login-form" aria-busy={busy}>
-                <Notice>{error}</Notice>
-                <div className="login-field-group">
-                  <label htmlFor="email">Alamat email</label>
-                  <div className="login-input-wrap">
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      autoComplete="username"
-                      placeholder="nama@perusahaan.com"
-                      required
-                      disabled={busy}
-                    />
-                  </div>
-                </div>
-                <div className="login-field-group">
-                  <label htmlFor="password">Kata sandi</label>
-                  <div className="login-input-wrap">
-                    <input
-                      id="password"
-                      name="password"
-                      type={visible ? "text" : "password"}
-                      autoComplete="current-password"
-                      placeholder="Masukkan kata sandi"
-                      required
-                      disabled={busy}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setVisible(!visible)}
-                      aria-label={visible ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"}
-                      aria-pressed={visible}
-                      className="login-password-toggle"
-                    >
-                      {visible ? <EyeOff size={18} /> : <Eye size={18} />}
-                    </button>
-                  </div>
-                </div>
-                <button type="submit" disabled={busy} className="login-submit">
-                  <span>{busy ? "Memproses..." : "Masuk ke workspace"}</span>
-                  <span className="login-submit-icon">
-                    {busy ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
-                  </span>
-                </button>
-              </form>
+        <section className="login-panel" aria-labelledby="login-form-heading">
+          <h2 id="login-form-heading">Masuk</h2>
+          <p className="login-lede">Gunakan akun kantor Anda.</p>
 
-              <p className="login-account-note">
-                Belum punya akun? <span>Hubungi administrator.</span>
-              </p>
+          <form onSubmit={login} className="login-form" aria-busy={busy}>
+            <Notice>{error}</Notice>
+
+            <div className="login-field">
+              <label htmlFor="email">Email</label>
+              <div className="login-line">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="username"
+                  placeholder="nama@perusahaan.com"
+                  required
+                  disabled={busy}
+                />
+              </div>
             </div>
-          </section>
-        </div>
 
-        <footer className="login-footer">
-          <span>Helpdesk IT · Internal workspace</span>
-        </footer>
+            <div className="login-field">
+              <label htmlFor="password">Kata sandi</label>
+              <div className="login-line">
+                <input
+                  id="password"
+                  name="password"
+                  type={visible ? "text" : "password"}
+                  autoComplete="current-password"
+                  placeholder="••••••••"
+                  required
+                  disabled={busy}
+                />
+                <button
+                  type="button"
+                  onClick={() => setVisible(!visible)}
+                  aria-label={visible ? "Sembunyikan kata sandi" : "Tampilkan kata sandi"}
+                  aria-pressed={visible}
+                  className="login-reveal"
+                >
+                  {visible ? "Sembunyikan" : "Lihat"}
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" disabled={busy} className="login-submit">
+              {busy && <Loader2 size={16} className="animate-spin" aria-hidden="true" />}
+              {busy ? "Memeriksa akun..." : "Masuk"}
+            </button>
+          </form>
+
+          <p className="login-note">Belum punya akun? Minta ke administrator IT.</p>
+        </section>
       </div>
     </main>
   );
