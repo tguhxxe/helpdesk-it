@@ -128,10 +128,10 @@
   display: grid;
   grid-template-columns: minmax(0, 1fr) 420px;
   align-items: center;
-  gap: 96px;
+  gap: 160px;
   flex: 1;
   width: 100%;
-  max-width: 1132px;
+  max-width: 1196px;
   margin-inline: auto;
   padding: 0 48px calc(var(--rule) * 3);
 }
