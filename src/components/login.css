@@ -131,8 +131,9 @@
   gap: 96px;
   flex: 1;
   width: 100%;
-  max-width: 1320px;
-  padding: 0 88px calc(var(--rule) * 3) calc(var(--margin-x) + 40px);
+  max-width: 1132px;
+  margin-inline: auto;
+  padding: 0 48px calc(var(--rule) * 3);
 }
 
 /* teks duduk di atas garis buku: line-height = kelipatan --rule */
@@ -282,7 +283,7 @@
 /* ---------- Desktop pendek ---------- */
 @media (min-width: 961px) and (max-height: 720px) {
   .login-page .login-top { height: calc(var(--rule) * 2); }
-  .login-page .login-stage { padding-bottom: var(--rule); }
+  .login-page .login-stage { padding-bottom: calc(var(--rule) * 2); }
   .login-page .login-panel { padding: 30px 34px 28px; }
   .login-page .login-form { gap: 22px; margin-top: 26px; }
 }
