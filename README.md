@@ -1,6 +1,6 @@
-# Website Helpdesk IT — JavaScript + Express + PostgreSQL
+# Helpdesk IT — Next.js + Express + PostgreSQL
 
-Project ini merupakan website Helpdesk IT full-stack yang sesuai dengan dokumen SKPL/User Story. Sistem memiliki dua aktor: **User** dan **Admin IT Support**.
+Website Helpdesk IT dengan antarmuka React yang minimalis dan responsif. Sistem memiliki dua aktor: **User** dan **Admin IT Support**. Frontend menggunakan Next.js App Router dan Tailwind CSS, sedangkan API Express, sesi login, dan database PostgreSQL berjalan dalam aplikasi yang sama.
 
 ## Fitur
 
@@ -25,7 +25,9 @@ Project ini merupakan website Helpdesk IT full-stack yang sesuai dengan dokumen 
 - Memberikan tanggapan/solusi
 
 ## Teknologi
-- Frontend: HTML5, CSS3, Vanilla JavaScript (Fetch API)
+- Frontend: Next.js 15 (App Router), React 19, Tailwind CSS 3
+- Komponen dialog: Radix UI (focus trap, Escape, dan navigasi keyboard)
+- Tipografi dan ikon: Inter (font lokal) + Lucide React
 - Backend: Node.js + Express
 - Database: PostgreSQL
 - Authentication: Express Session + bcrypt
@@ -38,17 +40,10 @@ helpdesk_it_postgresql/
 ├── db/
 │   ├── schema.sql
 │   └── seed.sql
-├── public/
-│   ├── css/style.css
-│   ├── js/
-│   │   ├── common.js
-│   │   ├── login.js
-│   │   ├── user.js
-│   │   └── admin.js
-│   ├── index.html
-│   ├── user.html
-│   └── admin.html
 ├── src/
+│   ├── app/                 # Halaman Next.js: /, /user, /admin
+│   ├── components/          # Login, dashboard, formulir, detail tiket
+│   ├── lib/api.js           # Fetch API dan format data frontend
 │   ├── middleware/auth.js
 │   ├── routes/
 │   │   ├── auth.js
@@ -59,6 +54,9 @@ helpdesk_it_postgresql/
 ├── uploads/
 ├── .env.example
 ├── docker-compose.yml
+├── next.config.js
+├── tailwind.config.js
+├── postcss.config.js
 ├── package.json
 └── README.md
 ```
@@ -66,7 +64,7 @@ helpdesk_it_postgresql/
 ## Cara Menjalankan — Cara Paling Mudah (Docker untuk PostgreSQL)
 
 ### 1. Install kebutuhan
-- Node.js 18 atau lebih baru
+- Node.js 22 LTS direkomendasikan (minimum 18.18)
 - Docker Desktop
 
 ### 2. Salin konfigurasi environment
@@ -108,6 +106,25 @@ Buka:
 http://localhost:3000
 ```
 
+`npm run dev` menjalankan Express dan Next.js dalam mode pengembangan, termasuk pembaruan otomatis komponen React. Tidak perlu menjalankan server frontend terpisah. Database tetap dijalankan melalui Docker atau instalasi PostgreSQL lokal.
+
+### Build dan menjalankan mode produksi
+
+```bash
+npm run build
+npm start
+```
+
+Jalankan ulang build setelah mengubah frontend. `npm start` memerlukan hasil build di `.next/`. Build tidak membutuhkan koneksi database; login dan operasi tiket memerlukannya.
+
+### Halaman
+
+- `/` — login
+- `/user` — dashboard dan tiket pengguna
+- `/admin` — dashboard serta penanganan tiket IT Support
+
+Tautan lama `/index.html`, `/user.html`, dan `/admin.html` otomatis diarahkan ke halaman baru. Akses dashboard diperiksa melalui sesi Express, dan API tetap memvalidasi peran serta kepemilikan tiket.
+
 ## Akun Demo
 
 User:
@@ -139,6 +156,8 @@ docker compose up -d
 ```
 
 ## Catatan
-- Project ini sengaja menggunakan JavaScript/Express agar ringan dan mudah dijalankan untuk demonstrasi tugas.
+- Next.js disajikan melalui custom server Express agar API, sesi login, dan upload tetap menggunakan satu origin. Gunakan `npm start`, bukan `next start`, untuk menjalankan seluruh aplikasi. Pola integrasi: [dokumentasi Next.js](https://nextjs.org/docs/15/app/guides/custom-server).
+- Styling menggunakan utility Tailwind dan komponen React; halaman HTML, CSS, dan skrip DOM lama telah digantikan.
+- Font di-host lokal bersama aplikasi, sehingga tampilan tidak memerlukan akses Google Fonts.
 - Data tiket, user, dan tanggapan tersimpan di PostgreSQL, bukan `localStorage`.
 - Folder `uploads/` menyimpan lampiran tiket pada server lokal.

@@ -1,0 +1,46 @@
+@import "@fontsource-variable/inter";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#f7f8fa] font-sans text-ink antialiased;
+  }
+  ::selection {
+    @apply bg-blue-100 text-blue-950;
+  }
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
+  }
+  button {
+    @apply disabled:cursor-not-allowed disabled:opacity-50;
+  }
+}
+
+@layer components {
+  .field {
+    @apply w-full rounded-lg border border-zinc-300 bg-white px-3.5 py-3 text-sm text-ink placeholder:text-zinc-400 transition-colors hover:border-zinc-400 disabled:bg-zinc-50;
+  }
+  .label {
+    @apply mb-2 block text-sm font-medium text-zinc-700;
+  }
+  .eyebrow {
+    @apply text-xs font-medium uppercase tracking-[0.15em] text-zinc-500;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

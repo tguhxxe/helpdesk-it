@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
     res.json({
       message: 'Login berhasil.',
       user: req.session.user,
-      redirect: user.role === 'admin' ? '/admin.html' : '/user.html',
+      redirect: user.role === 'admin' ? '/admin' : '/user',
     });
   } catch (error) {
     console.error(error);
