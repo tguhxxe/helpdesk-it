@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard Admin — Helpdesk IT</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">IT</div><span>Helpdesk IT</span></div>
+    <nav class="nav">
+      <a class="active" href="#dashboard"><span class="nav-label">Dashboard</span></a>
+      <a href="#semua-tiket"><span class="nav-label">Semua Tiket</span></a>
+      <a href="#penanganan"><span class="nav-label">Penanganan</span></a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-mini"><strong data-user-name>Admin</strong><span data-user-email></span></div>
+      <button class="btn btn-danger btn-block" data-logout style="margin-top:14px"><span>Keluar</span></button>
+    </div>
+  </aside>
+
+  <section class="main">
+    <header class="topbar">
+      <div><h1>Dashboard IT Support</h1><p>Pantau, tangani, dan selesaikan tiket pengguna.</p></div>
+      <div><strong data-user-name>Admin</strong></div>
+    </header>
+
+    <div class="content" id="dashboard">
+      <div class="grid stats">
+        <div class="stat-card"><span>Total Tiket</span><strong id="statTotal">0</strong><small>Seluruh laporan</small></div>
+        <div class="stat-card"><span>Menunggu</span><strong id="statWait">0</strong><small>Perlu ditinjau</small></div>
+        <div class="stat-card"><span>Diproses</span><strong id="statProgress">0</strong><small>Sedang ditangani</small></div>
+        <div class="stat-card"><span>Selesai</span><strong id="statDone">0</strong><small>Sudah ditutup</small></div>
+      </div>
+
+      <section class="card" id="semua-tiket">
+        <div class="card-head">
+          <h2>Semua Tiket</h2>
+          <div class="filters">
+            <input id="searchInput" placeholder="Cari kode, judul, atau user...">
+            <select id="statusFilter"><option value="">Semua Status</option><option>Menunggu</option><option>Diproses</option><option>Selesai</option></select>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>No. Tiket</th><th>User</th><th>Masalah</th><th>Prioritas</th><th>Status</th><th>Tanggapan</th><th>Aksi</th></tr></thead>
+            <tbody id="ticketBody"><tr><td colspan="7" class="empty">Memuat...</td></tr></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card" id="penanganan" style="margin-top:22px">
+        <div class="card-head"><h2>Penanganan Tiket</h2><span class="badge badge-progress">Admin IT Support</span></div>
+        <div class="card-body">
+          <div id="detailPanel" class="empty">Klik tombol “Tangani” pada tiket untuk melihat detail.</div>
+          <form id="replyForm" class="hidden">
+            <div class="form-group" style="margin-top:16px">
+              <label for="replyMessage">Tanggapan / Solusi</label>
+              <textarea id="replyMessage" placeholder="Tuliskan hasil pemeriksaan atau solusi untuk user..." required></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit">Kirim Tanggapan</button>
+          </form>
+        </div>
+      </section>
+    </div>
+  </section>
+</div>
+<script src="/js/common.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

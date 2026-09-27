@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Helpdesk IT — Login</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-hero">
+      <div class="brand"><div class="brand-mark">IT</div><span>Helpdesk IT</span></div>
+      <div class="hero-copy">
+        <h1>Laporkan masalah IT tanpa ribet.</h1>
+        <p>Website Helpdesk IT membantu pengguna membuat tiket, memantau status penanganan, dan berkomunikasi langsung dengan tim IT Support.</p>
+        <div class="hero-points">
+          <div class="hero-point"><strong>Tiket terstruktur</strong><br>Masalah tercatat rapi dan mudah dilacak.</div>
+          <div class="hero-point"><strong>Status real-time</strong><br>Menunggu, Diproses, sampai Selesai.</div>
+          <div class="hero-point"><strong>Riwayat tanggapan</strong><br>Komunikasi user dan IT Support terdokumentasi.</div>
+        </div>
+      </div>
+      <small>Prototype akademik — JavaScript + Express + PostgreSQL</small>
+    </section>
+
+    <section class="auth-panel">
+      <div class="login-card">
+        <div class="brand" style="margin-bottom:26px;color:#172033"><div class="brand-mark" style="background:#2563eb;color:white;border:0">IT</div><span>Helpdesk IT</span></div>
+        <h2>Selamat datang</h2>
+        <p>Masuk menggunakan akun User atau Admin IT Support.</p>
+        <div id="alertBox" class="hidden"></div>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="nama@email.com" autocomplete="username" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="Masukkan password" autocomplete="current-password" required>
+          </div>
+          <button class="btn btn-primary btn-block" type="submit">Masuk ke Helpdesk</button>
+        </form>
+
+        <div class="demo-box">
+          <strong>Akun demo</strong><br>
+          User: <b>user@helpdesk.local</b> / <b>user123</b><br>
+          Admin: <b>admin@helpdesk.local</b> / <b>admin123</b>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="/js/common.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>
