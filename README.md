@@ -41,7 +41,7 @@ helpdesk_it_postgresql/
 │   ├── schema.sql
 │   └── seed.sql
 ├── src/
-│   ├── app/                 # Halaman Next.js: /, /user, /admin
+│   ├── app/                 # Halaman Next.js: /, /login, /user, /admin
 │   ├── components/          # Login, dashboard, formulir, detail tiket
 │   ├── lib/api.js           # Fetch API dan format data frontend
 │   ├── middleware/auth.js
@@ -119,11 +119,14 @@ Jalankan ulang build setelah mengubah frontend. `npm start` memerlukan hasil bui
 
 ### Halaman
 
-- `/` — login
+- `/` — landing page pengenalan Helpdesk IT, fitur, dan cara kerja
+- `/login` — login pengguna dan admin
 - `/user` — dashboard dan tiket pengguna
 - `/admin` — dashboard serta penanganan tiket IT Support
 
 Tautan lama `/index.html`, `/user.html`, dan `/admin.html` otomatis diarahkan ke halaman baru. Akses dashboard diperiksa melalui sesi Express, dan API tetap memvalidasi peran serta kepemilikan tiket.
+
+Pengunjung yang belum login diarahkan ke `/login` saat membuka dashboard. Setelah login, pengguna masuk ke dashboard sesuai perannya. Logout mengembalikan pengguna ke landing page.
 
 ## Akun Demo
 

@@ -68,7 +68,7 @@ app.use((req, res, nextMiddleware) => {
   const route = req.path.replace(/\/$/, "");
   if (route === "/admin" || route === "/user") {
     res.set("Cache-Control", "no-store");
-    if (!req.session?.user) return res.redirect("/");
+    if (!req.session?.user) return res.redirect("/login");
     const destination = req.session.user.role === "admin" ? "/admin" : "/user";
     if (route !== destination) return res.redirect(destination);
   }

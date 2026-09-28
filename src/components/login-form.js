@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { api } from "../lib/api";
 import { Notice } from "./ui";
@@ -49,10 +50,10 @@ export default function LoginForm() {
       </div>
 
       <header className="login-top">
-        <span className="login-brand">
+        <Link href="/" className="login-brand rounded hover:opacity-75 active:opacity-60" aria-label="Helpdesk IT — Kembali ke beranda">
           <span className="login-brand-mark" aria-hidden="true" />
           Helpdesk IT
-        </span>
+        </Link>
       </header>
 
       <div className="login-stage">

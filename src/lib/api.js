@@ -20,9 +20,9 @@ export async function api(url, options = {}) {
       response.status === 401 &&
       url !== "/api/auth/login" &&
       typeof window !== "undefined" &&
-      window.location.pathname !== "/"
+      !["/", "/login", "/login/"].includes(window.location.pathname)
     ) {
-      window.location.replace("/");
+      window.location.replace("/login");
     }
     throw error;
   }
