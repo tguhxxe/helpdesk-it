@@ -2,6 +2,16 @@
 
 Website Helpdesk IT dengan antarmuka React yang minimalis dan responsif. Sistem memiliki dua aktor: **User** dan **Admin IT Support**. Frontend menggunakan Next.js App Router dan Tailwind CSS, sedangkan API Express, sesi login, dan database PostgreSQL berjalan dalam aplikasi yang sama.
 
+## Dokumen tugas
+
+- Identitas: **Teguh Setia — 202310370311061**.
+- Dokumen utama: [SKPL Helpdesk IT](docs/SKPL_Helpdesk_IT_Teguh_Setia.docx).
+- Versi teks: [Spesifikasi kebutuhan](docs/SPESIFIKASI_KEBUTUHAN.md).
+- [Panduan pengumpulan dan demonstrasi](PENGUMPULAN.md).
+- [Hasil pengujian](docs/HASIL_PENGUJIAN.md).
+
+Format yang dipilih adalah **User Story** sebagai spesifikasi kebutuhan tertulis. Karena tugas meminta salah satu bentuk spesifikasi, use case diagram tidak diperlukan untuk pilihan ini.
+
 ## Fitur
 
 ### User
@@ -83,7 +93,7 @@ cp .env.example .env
 ### 3. Install dependency Node.js
 
 ```bash
-npm install
+npm ci
 ```
 
 ### 4. Jalankan PostgreSQL
@@ -148,6 +158,18 @@ psql -U helpdesk -d helpdesk_it -f db/seed.sql
 ```
 
 Sesuaikan `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, dan `DB_PASSWORD` pada `.env`.
+
+`.env.example` disesuaikan dengan akun database pada Docker Compose. Untuk PostgreSQL lokal yang telah memiliki kredensial berbeda, gunakan kredensial database tersebut. Ganti `SESSION_SECRET` dengan nilai acak milik lingkungan Anda.
+
+## Pemeriksaan integrasi
+
+Setelah database siap dan `npm run build` berhasil, jalankan:
+
+```bash
+npm run test:submission
+```
+
+Skrip menjalankan server produksi khusus pada port 3107 dan menguji autentikasi, akses peran, kepemilikan tiket, pembuatan tiket, tanggapan, status, statistik, serta lampiran. Port 3107 harus kosong. Akun, tiket, dan lampiran uji dibuat sementara lalu dibersihkan ketika skrip selesai secara normal, termasuk jika pemeriksaan gagal. Jangan menghentikan proses secara paksa selama pengujian.
 
 ## Reset Database Docker
 

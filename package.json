@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node src/server.js --dev",
-    "build": "next build"
+    "build": "next build",
+    "test:submission": "node scripts/check-submission.js"
   },
   "engines": {
     "node": ">=18.18.0"
