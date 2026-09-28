@@ -13,6 +13,14 @@ Pengujian menjalankan server Express dan Next.js dalam mode produksi pada port 3
 
 ## Hasil integrasi
 
+### Pemeriksaan ulang error kompilasi development
+
+- Sebelum perbaikan, `GET /` pada port 3000 menghasilkan HTTP 500 dengan `ENOENT ... .next/server/app/page.js`.
+- Folder kompilasi development dipisahkan ke `.next-dev/`; produksi tetap memakai `.next/`.
+- Setelah restart, `/` dan `/login` menghasilkan HTTP 200. Build produksi berhasil saat development berjalan, dan halaman development tetap menghasilkan HTTP 200 setelah build.
+- Server development (3000) dan produksi (3100) berhasil menyajikan seluruh aset Next.js yang dirujuk halaman utama. Dashboard tanpa sesi menghasilkan redirect ke `/login`; `/api/health` menghasilkan HTTP 200.
+- Pengujian integrasi dijalankan ulang setelah perbaikan: seluruh 17 kelompok pemeriksaan di bawah lulus. Verifikasi ulang ini berbasis HTTP, bukan interaksi browser otomatis.
+
 | No | Pemeriksaan | Kebutuhan terkait | Hasil |
 |---|---|---|---|
 | 1 | Halaman publik dan login memberikan respons berhasil | US01 | Lulus |

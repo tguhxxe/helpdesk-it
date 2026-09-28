@@ -127,6 +127,10 @@ npm start
 
 Jalankan ulang build setelah mengubah frontend. `npm start` memerlukan hasil build di `.next/`. Build tidak membutuhkan koneksi database; login dan operasi tiket memerlukannya.
 
+Mode development menggunakan `.next-dev/`, sedangkan build produksi menggunakan `.next/`, agar `npm run build` tidak menimpa kompilasi server development yang sedang berjalan. Hentikan server produksi sebelum membangun ulang, lalu jalankan kembali setelah build selesai. Jika development dan produksi dijalankan bersamaan, gunakan port berbeda.
+
+Jika muncul error `ENOENT ... .next/server/app/page.js` pada server development lama, hentikan dengan `Ctrl+C`, lalu jalankan ulang `npm run dev` dan muat ulang browser. Server akan membuat kompilasi development di folder terpisah.
+
 ### Halaman
 
 - `/` — landing page pengenalan Helpdesk IT, fitur, dan cara kerja
